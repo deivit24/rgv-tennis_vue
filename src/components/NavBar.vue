@@ -37,13 +37,13 @@ export default {
       },
       {
         title: "Coaches",
-        icon: "mdi-home",
-        to: "/mdi-human-greeting",
+        icon: "mdi-human-greeting",
+        to: "/coaches",
       },
       {
         title: "Programs",
-        icon: "mdi-home",
-        to: "/mdi-tennis",
+        icon: "mdi-tennis",
+        to: "/programs",
       },
       {
         title: "Contact",

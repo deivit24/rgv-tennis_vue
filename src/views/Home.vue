@@ -1,15 +1,16 @@
 <template lang="pug">
 main
   v-parallax(dark, src='../assets/cover.jpg' height="730")
-    v-row(align='center', justify='center')
-      v-col.text-center(cols='12')
+    v-container: v-row(align='center', justify='center')
+      v-col.text-center(cols='12' md='6' style="background:rgba(0, 0, 0, 0.4)")
         h1.text-h1.font-weight-thin.mb-4
           | Welcome
         h4.text-h3.font-weight-normal.mb-4
           | To RGV Tennis Academy
         h4.text-h4.font-weight-normal.mb-4
           | Start Riping it Today!
-        v-btn(rounded to="/contact") Sign Up
+      v-col.text-center(cols='12' md='6')
+        Form
   v-container: v-row
     v-col(cols=12 v-for="card in cards")
       HomeCard(
@@ -24,6 +25,7 @@ main
 
 <script>
 import HomeCard from "../components/HomeCard";
+import Form from "../components/Form.vue";
 import ProgramImg from "../assets/ten2.png";
 import Logo from "../assets/logo2.png";
 import SignUp from "../assets/tourn.jpg";
@@ -31,6 +33,7 @@ export default {
   name: "Home",
   components: {
     HomeCard,
+    Form,
   },
   data: () => ({
     cards: [
