@@ -1,11 +1,13 @@
 <template lang="pug">
 v-card.mx-auto(max-width='400')
-  v-img.align-end(height='200px' :src="img")
-    v-card-title {{title}}
-  v-card-subtitle.pb-0
+  v-img.align-end(height='200px'  :src="src" dark)
+    v-card-title( style="background:rgba(0, 0, 0, 0.5)") {{title}}
+  v-card-subtitle.pb-0.mb-2
     | {{subtitle}}
-  v-card-text.text--primary
-    div {{text}}
+  v-card-text(style="height:120px").text--primary
+    p {{time}}
+    p {{price}}
+
   v-card-actions
     v-btn(color='orange' text)
       | Sign up
@@ -26,7 +28,11 @@ export default {
       type: String,
       required: true,
     },
-    text: {
+    time: {
+      type: String,
+      required: true,
+    },
+    price: {
       type: String,
       required: true,
     },

@@ -29,6 +29,7 @@ import Form from "../components/Form.vue";
 import ProgramImg from "../assets/ten2.png";
 import Logo from "../assets/logo2.png";
 import SignUp from "../assets/tourn.jpg";
+
 export default {
   name: "Home",
   components: {
@@ -51,7 +52,7 @@ export default {
         text: "Learn more about the history RGV Tennis Academy and their coaches",
         src: Logo,
         to: "/coaches",
-        first: true,
+        first: false,
       },
       {
         title: "Sign Up Today",

@@ -7,11 +7,12 @@ v-card.mx-auto(max-width='900px', flat).my-10
         | {{title}}
       
       p {{text}}
-      v-btn(outlined
-      color="primary"
-        rounded
-        text
-        :to="to").ma-5 Explore
+      v-card-actions
+        v-btn(outlined
+        color="primary"
+          rounded
+          text
+          :to="to") Explore
     v-col(cols=12 md=6 :class="first ? 'order-first': ''")
       v-img(:src="src")
 
