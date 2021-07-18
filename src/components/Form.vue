@@ -22,6 +22,8 @@ v-card.mx-auto(max-width='500')
             )
           v-col(cols='12')
             v-textarea(
+              rows="1",
+              auto-grow
               v-model='message' 
               name="message" 
               :rules='messageRules' 

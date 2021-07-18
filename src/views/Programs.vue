@@ -1,11 +1,11 @@
 <template lang="pug">
 main
-  v-parallax(dark, src='../assets/programs.jpg' height="730")
+  v-parallax(dark, src='../assets/programs.jpg' height="1000")
     v-container
       v-row(align='center', justify='center')
-        v-col.text-center(cols='12' style="background:rgba(0, 0, 0, 0.4)")
-          h2.text-h2.font-weight-normal.mb-4
-            | RGV offers programs for all levels
+        v-col.text-center(cols='12' )
+          h1.text-h1.font-weight-bold.mb-4
+            | Programs for all levels
   v-container
     v-row(style="margin: 200px 0px")
       v-col(cols=12).text-center
