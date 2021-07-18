@@ -4,17 +4,21 @@ v-card.mx-auto(max-width='500')
     v-toolbar-title Contact Us Today
     v-spacer  
   v-card-text
-    v-form(ref="form"
-    v-model="valid"
-    name="contact" method="POST" data-netlify="true"
-    lazy-validation)
+    form(
+      ref="form"
+      v-model="valid"
+      name="contact-speaker" 
+      netlify 
+      netlify-honeypot="bot-field" 
+      lazy-validation
+    )
       v-container
         v-row
           v-col(cols='12')
-            v-text-field(v-model='name' name="name" :rules='nameRules' :counter='10' label='Name' required)
+            v-text-field(v-model='form.name' name="name" :rules='nameRules' :counter='10' label='Name' required)
           v-col(cols='12')
             v-text-field(
-              v-model='email' 
+              v-model='form.email' 
               email="email" 
               :rules='emailRules' 
               label='E-mail' 
@@ -24,7 +28,7 @@ v-card.mx-auto(max-width='500')
             v-textarea(
               rows="1",
               auto-grow
-              v-model='message' 
+              v-model='form.message' 
               name="message" 
               :rules='messageRules' 
               :counter='200'
@@ -32,25 +36,28 @@ v-card.mx-auto(max-width='500')
               required
             )
           v-btn.ml-auto.mt-3(
-            :disabled="!valid"
             color="blue darken-4"
             class="mr-4"
             dark
+            @click="handleSubmit"
           ) Submit
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Form",
   data: () => ({
     valid: false,
-    name: "",
+    form: {
+      name: "",
+      email: "",
+      message: "",
+    },
     nameRules: [
       (v) => !!v || "Name is required",
       (v) => v.length <= 10 || "Name must be less than 10 characters",
     ],
-    email: "",
-    message: "",
     messageRules: [
       (v) => !!v || "Message is required",
       (v) => v.length <= 200 || "Name must be less than 200 characters",
@@ -60,5 +67,36 @@ export default {
       (v) => /.+@.+/.test(v) || "E-mail must be valid",
     ],
   }),
+  methods: {
+    resetForm() {
+      this.form = {
+        name: "",
+        email: "",
+        message: "",
+      };
+    },
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+    handleSubmit() {
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+      };
+
+      axios.post(
+        "/",
+        this.encode({
+          "form-name": "contact-speaker",
+          ...this.form,
+        }),
+        axiosConfig
+      );
+      this.resetForm();
+    },
+  },
 };
 </script>
