@@ -6,7 +6,6 @@ v-card.mx-auto(max-width='500')
   v-card-text
     v-form(ref="form"
     v-model="valid"
-    name="contact" method="POST" data-netlify="true"
     lazy-validation)
       v-container
         v-row
@@ -35,11 +34,13 @@ v-card.mx-auto(max-width='500')
             class="mr-4"
             dark
           ) Submit
+    
+
 </template>
 
 <script>
 export default {
-  name: "Form",
+  name: "ContactForm",
   data: () => ({
     valid: false,
     name: "",

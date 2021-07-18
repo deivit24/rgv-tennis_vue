@@ -4,9 +4,9 @@ v-card.mx-auto(max-width='400')
     v-card-title( style="background:rgba(0, 0, 0, 0.5)") {{title}}
   v-card-subtitle.pb-0.mb-2
     | {{subtitle}}
-  v-card-text(style="height:120px").text--primary
-    p {{time}}
-    p {{price}}
+  v-card-text().text--primary
+    p {{text}}
+  
 
   v-card-actions
     v-btn(color='orange' text)
@@ -18,7 +18,7 @@ v-card.mx-auto(max-width='400')
 
 <script>
 export default {
-  name: "ProgramCard",
+  name: "CoachCard",
   props: {
     height: {
       type: String,
@@ -33,11 +33,7 @@ export default {
       type: String,
       required: true,
     },
-    time: {
-      type: String,
-      required: true,
-    },
-    price: {
+    text: {
       type: String,
       required: true,
     },

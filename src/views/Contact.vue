@@ -1,17 +1,20 @@
 <template lang="pug">
-  #about
-    h1 Page Under Construction
-    h2 Coming soon
+  #contact
+    ContactForm
 </template>
 
 <script>
+import ContactForm from "../components/ContactForm.vue";
 export default {
-  name: "About",
+  name: "Contact",
+  components: {
+    ContactForm,
+  },
 };
 </script>
 
 <style scoped>
-#about {
+#contact {
   height: 100vh;
   display: flex;
   flex-direction: column;
