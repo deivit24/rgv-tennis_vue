@@ -4,7 +4,7 @@ v-card.mx-auto(max-width='500')
     v-toolbar-title Contact Us Today
     v-spacer  
   v-card-text
-    form(
+    v-form(
       ref="form"
       v-model="valid"
       name="contact-speaker" 
@@ -56,7 +56,7 @@ export default {
     },
     nameRules: [
       (v) => !!v || "Name is required",
-      (v) => v.length <= 10 || "Name must be less than 10 characters",
+      (v) => v.length <= 20 || "Name must be less than 20 characters",
     ],
     messageRules: [
       (v) => !!v || "Message is required",
@@ -74,6 +74,7 @@ export default {
         email: "",
         message: "",
       };
+      console.log(this.$refs.form);
     },
     encode(data) {
       return Object.keys(data)
