@@ -41,6 +41,10 @@ v-card.mx-auto(max-width='500')
             dark
             @click="handleSubmit"
           ) Submit
+      v-alert(type="success" v-if="snackbar" :key="rerender").mt-5
+        | {{text}}
+        
+
 </template>
 
 <script>
@@ -49,6 +53,10 @@ export default {
   name: "Form",
   data: () => ({
     valid: false,
+    snackbar: false,
+    text: "Message Successful!",
+    timeout: 3000,
+    rerender: 0,
     form: {
       name: "",
       email: "",
@@ -74,7 +82,7 @@ export default {
         email: "",
         message: "",
       };
-      console.log(this.$refs.form);
+      this.$refs.form.resetValidation();
     },
     encode(data) {
       return Object.keys(data)
@@ -84,19 +92,26 @@ export default {
         .join("&");
     },
     handleSubmit() {
-      const axiosConfig = {
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-      };
+      try {
+        const axiosConfig = {
+          header: { "Content-Type": "application/x-www-form-urlencoded" },
+        };
 
-      axios.post(
-        "/",
-        this.encode({
-          "form-name": "contact-speaker",
-          ...this.form,
-        }),
-        axiosConfig
-      );
-      this.resetForm();
+        axios.post(
+          "/",
+          this.encode({
+            "form-name": "contact-speaker",
+            ...this.form,
+          }),
+          axiosConfig
+        );
+        this.snackbar = true;
+        this.text = "Message Successful!";
+        this.rerender++;
+        this.resetForm();
+      } catch (error) {
+        this.text = "Failed to send";
+      }
     },
   },
 };
